@@ -2,109 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{background-color: azure;
-          }
-        nav {
-            margin: auto;
-            width: 100%;
-            border: solid blue 1px;
-            display: flex;
-        }
-
-        nav button {
-            border: none;
-            padding: 9px;
-            font-size: 14px;
-            font-weight: 600;
-            background-color:#ff1f2c;
-            color: white;
-            border-radius: 5px;
-            align-items: center;
-            padding-top: 10px;
-        }
-
-        .stock_logo {
-            width: 16%;
-        }
-
-        .stock_logo img {
-            width: 100%;
-        }
-
-        .ipt {
-            width: 60%;
-            margin: auto;
-        }
-
-        .ipt input {
-            width: 85%;
-            height: 30px;
-            font-size: 19px;
-            padding-bottom: 2px;
-            background-color:rgb(245, 245, 237);
-        }
-
-        .cart_div {
-            width: 20%;
-            border: solid blue 1px;
-        }
-        .bottom_nav{border: solid peru 1px;
-         height: 30px;
-         display: flex;
-         justify-content: space-around;
-         padding-top: 4px;}
-         .bottom_nav h4{margin-top: -0.01px;}
-    </style>
-</head>
-
-<body>
-    <nav>
-        <div class="stock_logo">
-            <img src="./img/logo.png" alt="">
-        </div>
-        <div class="ipt">
-            <input type="text">
-            <button>Search</button>
-        </div>
-        <div class="cart_div"></div>  
-    </nav>
-    <div class="bottom_nav">
-        <a><h4>Furniture</h4></a>
-        <a><h4>Furniture</h4></a>
-        <a><h4>Furniture</h4></a>
-        <a><h4>Furniture</h4></a>
-        <a><h4>Furniture</h4></a>
-        <a><h4>Furniture</h4></a>
-        <a><h4>Furniture</h4></a>
-        <a><h4>Furniture</h4></a>
-    </div>
-</body>
-
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home - Overstock</title>
+  <title>Home</title>
   <link rel="stylesheet" href="./index.css" />
+  
 </head>
 
 <body id="body">
   <div id="container">
+
     <div id="Navigation"></div>
     <!-- ------------Navigation completed ------->
     <div id="H-refresh">
       <img src="./Images/H-refresh.png" alt="" />
     </div>
+
+
 
     <!-- --------------------Fresh-furniture-------------------- -->
     <h2 class="Heads">Limited-Time Deals</h2>
@@ -293,3 +208,54 @@
 </body>
 
 </html>
+
+<script type="module">
+
+
+  import { navigation, Footer } from "./JS/index.js";
+
+  let div = (document.getElementById("Navigation").innerHTML = navigation());
+
+  let Fdiv = (document.getElementById("Footer").innerHTML = Footer());
+
+
+  document.querySelector(".dropbtn").addEventListener("click", function () {
+    window.location.href = "/furniture.html"
+  })
+
+  document.querySelector("#home").addEventListener("click", function () {
+    window.location.href = "/index.html"
+  })
+
+  //search 
+  let search = []
+  document.getElementById("search-Icon").addEventListener("click", function () {
+    let value = document.getElementById("searchbox").value.toLowerCase();
+    console.log(value.length);
+    if (value.length != 0) {
+      search.push(value)
+      localStorage.setItem("search", JSON.stringify(search))
+      window.location.href = "/search.html";
+    }
+
+  })
+  let username = JSON.parse(localStorage.getItem("username"))
+  usern(username)
+  function usern(u) {
+    document.getElementById("H-username").innerHTML = u[u.length - 1]
+
+  }
+  //cart
+  cartcount()
+  function cartcount() {
+    let totalcart = JSON.parse(localStorage.getItem("cartdata"))
+    document.getElementById("p-last").innerHTML = totalcart.length
+    console.log(totalcart.length)
+
+  }
+
+</script>
+<script src="./JS/search.js">
+
+
+</script>
